@@ -1,0 +1,118 @@
+.my-recipes-page {
+  padding: 2rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.back-btn {
+  background: #eee;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.my-recipes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
+.my-recipes-header h2 {
+  font-size: 2rem;
+  margin: 0;
+  color: #e64a19;
+}
+
+.form-button {
+  padding: 10px 16px;
+  background-color: #e64a19;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.form-button-outline {
+  padding: 10px 16px;
+  background-color: transparent;
+  border: 2px solid #e64a19;
+  color: #e64a19;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.recipe-form-container {
+  background: #f7f7f7;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.form-input-group {
+  margin-bottom: 1.3rem;
+}
+
+.form-input-group input,
+.form-input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid orangered;
+  border-radius: 8px;
+}
+
+.form-button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.empty-recipes-message {
+  text-align: center;
+  color: orangered;
+  font-size: 1.2rem;
+}
+
+/* Edit Form Container */
+.edit-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid orangered;
+  border-radius: 10px;
+  margin-bottom: 16px;   /* spacing between each field */
+  font-size: 1rem;
+}
+
+.recipe-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;     /* <-- space between the two buttons */
+  margin-top: 20px;
+}
+
+.fav-btn {
+  margin-top: 10px;
+}
+
+/* Space below "Save Changes" button */
+.fav-btn + .remove {
+  margin-left: 10px;
+}
+
+.recipe-info-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;   /* spacing between elements */
+}

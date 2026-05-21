@@ -1,0 +1,588 @@
+/* src/App.css */
+
+/* --- Global & Variables --- */
+:root {
+  --primary-color: #e64a19; /* A reddish-orange like in the video */
+  --dark-color: #222;
+  --light-color: #fff;
+  --grey-color: #f4f4f4;
+  --text-color: #333;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  background-color: var(--light-color);
+  color: var(--text-color);
+}
+
+.App {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--light-color);
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- Logo Styles --- */
+.nav-logo-link {
+  display: flex; /* Helps with alignment */
+  align-items: center;
+  cursor: default;
+}
+
+.nav-logo-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: default;
+}
+
+/* It styles the "Cozy Kitchen" text */
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color); /* This makes it orange */
+  margin-left: 0.75rem;  
+  cursor: default    /* This adds space from the image */
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* --- Wrapper for desktop links --- */
+.desktop-links {
+  display: flex; /* Show on desktop */
+  gap: 1.5rem;
+}
+
+/* --- Hamburger Menu Icon --- */
+.menu-icon {
+  display: none; /* Hide on desktop */
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  cursor: pointer;
+  z-index: 1002; /* Above other content */
+}
+
+/* --- Mobile Menu Container --- */
+.mobile-menu {
+  display: none; /* Hidden by default, shown by React state */
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--light-color);
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  
+  /* Positions it below the sticky navbar */
+  position: sticky;
+  top: 82px; /* Matches navbar height */
+  z-index: 999; /* Below navbar, above page */
+}
+
+.mobile-menu .nav-link {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.mobile-menu .nav-link:hover {
+  background-color: var(--grey-color);
+}
+
+.nav-button,
+.nav-button-outline {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.nav-button {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.nav-button:hover {
+  opacity: 0.9;
+}
+
+.nav-button-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+
+/* --- Profile Icon & Dropdown Styles --- */
+.profile-menu-container {
+  position: relative; /* Anchors the dropdown */
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes it a circle */
+  background-color: var(--primary-color); /* Uses your theme color */
+  color: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.profile-icon:hover {
+  opacity: 0.9;
+}
+
+.profile-dropdown {
+  position: absolute; /* Positions it relative to the container */
+  top: calc(100% + 10px); /* 100% (below icon) + 10px spacing */
+  right: 0; /* Aligns to the right */
+  background: var(--light-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  padding: 0.5rem;
+  min-width: 160px;
+  z-index: 1001; /* Sits on top of other content */
+}
+
+/* Makes the sign out button full-width inside the dropdown */
+.profile-dropdown .nav-button-outline {
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding is included in width */
+  text-align: center;
+}
+/* --- END: New Profile Styles --- */
+
+
+/* --- Hero Section --- */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 82px); /* 100% viewport height minus navbar (82px) */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg4NTU2MDY&ixlib=rb-1.2.1&q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+  color: var(--light-color);
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 5px;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+/* --- Recipe List --- */
+.recipe-list-container {
+  padding: 2rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* --- Recipe Card --- */
+.recipe-card {
+  position: relative; /* Added for favorite button positioning */
+  cursor: pointer; /* Show it's clickable */
+  background: var(--light-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}
+
+
+.recipe-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recipe-card-content {
+  padding: 1.5rem;
+}
+
+.recipe-card-content h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+/* --- Login Page --- */
+.login-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 82px); /* Full height minus navbar (using 82px for consistency) */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg4NTU2MDY&ixlib=rb-1.2.1&q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-box {
+  background: var(--light-color);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box; /* Important for padding to work correctly */
+  font-size: 1rem;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.login-button:hover {
+  opacity: 0.9;
+}
+
+/* --- STYLES FROM INGREDIENTSEARCH.CSS --- */
+
+.ingredient-search-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto 0 auto;
+  text-align: left;
+}
+
+.ingredient-search-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: white;
+}
+
+/* --- NEW: Wrapper for positioning --- */
+.ingredient-input-wrapper {
+  position: relative; /* This is key for the dropdown */
+}
+
+/* --- THIS IS THE UPDATED CODE BLOCK --- */
+.ingredient-input-box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding-left: 0.5rem; /* Give tags some space */
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  /* Removed flex-wrap: wrap; */
+}
+
+/* This new class holds the wrapping tags and the input field */
+.tags-input-wrapper {
+  display: flex;
+  flex-wrap: wrap; /* Tags wrap inside this area */
+  align-items: center;
+  flex-grow: 1; /* Takes all available space */
+}
+
+/* This new class creates the vertical line */
+.search-separator {
+  width: 1px;
+  background-color: #eee;
+  height: 28px;
+  margin: 0 0.25rem 0 0.5rem;
+}
+
+.ingredient-input-field {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  min-width: 150px;
+  background-color: transparent;
+}
+/* --- END OF UPDATED CODE BLOCK --- */
+
+
+.ingredient-tag {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  color: #333;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  margin: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.remove-tag-button {
+  background: none;
+  border: none;
+  color: #777;
+  margin-left: 0.4rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.remove-tag-button:hover {
+  color: #000;
+}
+
+/* --- NEW: Autocomplete Dropdown --- */
+.suggestions-list {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* Position it right below the input box */
+  top: 100%; 
+  left: 0;
+  /* Pulls it up to align with box bottom */
+  margin-top: -1px; 
+  z-index: 100;
+  max-height: 220px; /* Set a max height */
+  overflow-y: auto; /* Add a scrollbar only when needed */
+}
+
+.suggestions-list li {
+  padding: 0.75rem 1rem;
+  color: #333;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+.suggestions-list li:hover {
+  background-color: #f4f4f4;
+}
+/* --- Add this to the bottom of App.css --- */
+
+.ingredient-search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingredient-search-button svg {
+  width: 24px;
+  height: 24px;
+  fill: #777; /* Icon color */
+  transition: fill 0.2s;
+}
+
+.ingredient-search-button:hover svg {
+  fill: var(--primary-color); 
+}
+
+/* Spacing between Modify + Remove buttons */
+.recipe-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;       /* 🔥 Creates space between both buttons */
+}
+
+/* Optional: Make both buttons same height/shape */
+.recipe-actions button {
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.suggestions-list li.highlighted {
+  background: #eee;
+  cursor: pointer;
+}
+
+
+/*
+ =========================================
+   MOBILE RESPONSIVE STYLES
+ =========================================
+*/
+@media (max-width: 768px) {
+
+  /* --- Navbar --- */
+  .navbar {
+    padding: 1rem; /* Reduce side padding */
+  }
+
+  /* Hide the desktop navigation links */
+  .desktop-links {
+    display: none;
+  }
+
+  /* Adjust gap for the remaining profile icon */
+  .navbar-right {
+    gap: 1rem;
+  }
+
+  /* Show the mobile menu icon */
+  .menu-icon {
+    display: block; /* Show hamburger on mobile */
+  }
+  
+  /* Show the mobile menu container (if state is open) */
+  .mobile-menu {
+    display: flex; /* This makes it visible *if* rendered by React */
+  }
+
+
+  /* --- Hero Section --- */
+  .hero-content {
+    padding: 0 1rem; /* Add padding so text doesn't touch edges */
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem; /* Make title smaller */
+  }
+
+  .hero-content p {
+    font-size: 1rem; /* Make subtitle smaller */
+  }
+
+  /* --- Recipe List --- */
+  .recipe-list-container {
+    padding: 2rem 1rem; /* Reduce side padding */
+  }
+  
+  /* --- Login Page --- */
+  .login-box {
+    padding: 2rem 1.5rem; /* Reduce padding on the box */
+    margin: 0 1rem; /* Add margin so it doesn't touch edges */
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
+}

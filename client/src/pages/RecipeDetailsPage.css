@@ -1,0 +1,348 @@
+/* ================================================= */
+/* 1. PAGE LAYOUT AND HEADER */
+/* ================================================= */
+.recipe-page {
+    /* Ensures the main content starts right after the navigation bar/header */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f7f7f7; /* Light grey background for the page */
+}
+
+.loading-state {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Back Button Styling (positioned absolutely) */
+.back-btn {
+    position: absolute;
+    top: 60px; /* Adjust based on your top navigation bar height or safe area */
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 30; /* Ensure it's above the image and other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+    display: flex; /* For consistent alignment of arrow and text */
+    align-items: center;
+    gap: 8px; /* Space between arrow and text */
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+/* HERO IMAGE CONTAINER */
+.recipe-hero {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.recipe-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ================================================= */
+/* 2. OVERLAPPING INFO CARD */
+/* ================================================= */
+
+/* Summary Card that overlaps the image and contains title/metrics */
+.recipe-info-card {
+    position: relative; /* Changed from absolute/fixed to relative for flow */
+    /* The overlap effect is achieved by pulling it up into the header area */
+    margin-top: -80px; /* Adjust this value to control the amount of overlap */
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 900px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    z-index: 10;
+}
+
+.recipe-info-card h1 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+/* Summary paragraph */
+.recipe-info-card p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Recipe Metrics (Time, Servings, Score) */
+.recipe-metadata {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metadata-tag {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 500;
+    display: flex; /* For aligning icon and text within the tag */
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+/* Specific styling for the "Easy" or "Healthy" tag */
+.metadata-tag.easy, .metadata-tag.healthy {
+    background-color: #e6ffe6; /* Light green background */
+    color: #28a745; /* Green text color */
+}
+
+
+/* Favorite Button */
+.fav-btn {
+    padding: 1rem 2rem;
+    background-color: #e64a19; /* Primary orange/red color */
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    transition: background-color 0.2s;
+    display: inline-flex; /* To center the button and allow icon if added */
+    align-items: center;
+    gap: 8px;
+}
+
+.fav-btn:hover {
+    background-color: #d84315;
+}
+
+/* Back Button Styling (positioned absolutely in the top-left corner) */
+.back-btn {
+    position: absolute; /* Crucial for placing it over the hero image/content */
+    top: 20px; /* Distance from the top edge of its containing element (or viewport) */
+    left: 20px; /* Distance from the left edge */
+    
+    /* Visual styling to match the image */
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    border: none;
+    border-radius: 20px; /* Pill shape */
+    padding: 8px 15px; /* Adjust padding for size */
+    
+    /* Text and interactivity */
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    
+    /* Ensure it's clickable and visible above the image */
+    z-index: 20; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+    /* Align arrow and text */
+    display: flex; 
+    align-items: center;
+    gap: 8px;
+
+    /* Hover effect */
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+/* ================================================= */
+/* 3. INGREDIENTS AND INSTRUCTIONS SECTION */
+/* ================================================= */
+/* ================================================= */
+/* 3. INGREDIENTS AND INSTRUCTIONS SECTION - MODIFIED */
+/* ================================================= */
+
+/* Container for the two-column layout */
+.recipe-bottom {
+    max-width: 900px;
+    margin: 4rem auto 2rem auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem;
+
+    /* Two-column grid layout */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+/* Heading for Ingredients/Instructions - MODIFIED */
+.recipe-bottom h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e64a19; /* Primary orange/red color */
+    margin-bottom: 1.5rem;
+    
+    /* MODIFICATION 1: Use padding and border for the vertical accent line */
+    border-left: 5px solid #e64a19; 
+    padding-left: 15px; /* Increased padding to separate text from line */
+    line-height: 1;
+}
+
+/* Ingredients List */
+.ingredients-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ingredients-box li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+    /* Ensure proper alignment for multi-line items */
+    text-align: left; 
+}
+
+/* Ingredient Bullet - MODIFIED */
+.ingredients-box li::before {
+    content: '•';
+    color: #e64a19;
+    font-weight: bold;
+    display: block; /* Change from inline-block to block for better alignment control */
+    width: 1em;
+    font-size: 1.5rem; /* Make the dot larger */
+    line-height: 0; /* Reset line height so it centers better */
+    position: absolute;
+    left: 0; /* Position exactly at the start of the list item */
+    top: 10px; /* Vertically align the dot */
+}
+
+
+/* Instructions List (Numbered steps) */
+.instructions-box ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.instructions-box li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    padding-left: 3rem; /* Increased padding to give space for the circle */
+    position: relative;
+    counter-increment: step-counter;
+    text-align: left; /* Ensure text starts aligned */
+}
+
+/* Instruction Number Circle - MODIFIED */
+.instructions-box li::before {
+    content: counter(step-counter);
+    background-color: #e64a19;
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px; /* Same as height for vertical centering */
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    position: absolute;
+    left: 0; /* Position exactly at the start of the list item */
+    top: 0;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e64a19;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+.fav-btn.remove {
+  background-color: #d9534f;
+}
+
+.recipe-summary {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  color: #444;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* ================================================= */
+/* 4. MEDIA QUERY (Mobile Responsiveness) */
+/* ================================================= */
+
+@media (max-width: 768px) {
+    .recipe-hero {
+        height: 40vh; /* Reduced header height */
+    }
+
+    /* Adjust overlap for mobile */
+    .recipe-info-card {
+        margin-top: -60px;
+        padding: 1.5rem 1rem;
+        width: 95%;
+    }
+
+    .recipe-info-card h1 {
+        font-size: 1.8rem;
+    }
+
+    .recipe-info-card p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Stack Ingredients and Instructions vertically */
+    .recipe-bottom {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        margin-top: 3rem;
+        width: 95%;
+    }
+
+    .recipe-bottom h2 {
+        margin-top: 1.5rem;
+    }
+
+    /* Move the back button down a bit if needed for smaller viewport headers */
+    .back-btn {
+        top: 15px;
+        left: 15px;
+    }
+}
